@@ -112,4 +112,13 @@ Item {
         duration: worldTime
         running: true
     }
+
+    // Animation to rotate the cloud1
+    RotationAnimation {
+        target: cloud1
+        duration: worldTime
+        from: 360
+        to: 0
+        running: true
+    }
 }
