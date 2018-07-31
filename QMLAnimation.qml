@@ -75,12 +75,40 @@ Item {
         running: true
     }
 
+    // Animation to change the sun's size
+    NumberAnimation {
+        target: sun
+        property: "scale"
+        from: 1; to: 1.5
+        duration: worldTime
+        running: true
+    }
+
     // Animation to rotate the cloud4
     PropertyAnimation {
         target: cloud4
         property: "rotation"
         from: 0
         to: 360
+        duration: worldTime
+        running: true
+    }
+
+    // Animation to change the cloud1's size
+    NumberAnimation {
+        target: cloud1
+        property: "scale"
+        from: 1; to: 2
+        duration: worldTime
+        running: true
+    }
+
+    // Animation to move the cloud3 in horizontal
+    NumberAnimation {
+        target: cloud3
+        property: "x"
+        from: cloud3.x
+        to: world.width
         duration: worldTime
         running: true
     }
