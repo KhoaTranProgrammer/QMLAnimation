@@ -48,6 +48,9 @@ Item {
                 duration: worldTime * 0.3
             }
 
+            // Sun keep in the afternoon
+            PauseAnimation { duration: worldTime * 0.4 }
+
             // Sun down in the evening
             NumberAnimation {
                 from: world.height * 0.3
