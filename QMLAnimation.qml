@@ -36,6 +36,25 @@ Item {
         y: world.height * 0.3
         radius: width / 2
         color: "yellow"
+
+        // Animation to make the sun rise and down
+        SequentialAnimation on y {
+            running: true
+
+            // Sun rise in the morning
+            NumberAnimation {
+                from: world.height
+                to: world.height * 0.3
+                duration: worldTime * 0.3
+            }
+
+            // Sun down in the evening
+            NumberAnimation {
+                from: world.height * 0.3
+                to: world.height
+                duration: worldTime * 0.3
+            }
+        }
     }
 
     // This is the clouds group
