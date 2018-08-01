@@ -192,6 +192,19 @@ Item {
         id: cloud5; mWorldTime: worldTime; x: 900; y: 180; width: 380; height: 140; z: 1
     }
 
+    // This is the boat
+    Image {
+        id: boat
+        source: "boat.png"
+        anchors {
+            bottom: parent.bottom
+            bottomMargin: world.height * 0.025
+        }
+        x: 0
+        height: world.height * 0.2
+        fillMode: Image.PreserveAspectFit
+    }
+
     // Animation to move the sun in horizontal
     PropertyAnimation {
         target: sun
@@ -283,4 +296,21 @@ Item {
         to: 0
         running: true
     }
+
+    // List of state for boat
+    states: [
+        State { // From left -> right
+            name: "reanchored_right"
+            AnchorChanges { target: boat; anchors.right: world.right }
+        }
+    ]
+
+    // The transition when the state of boat changes
+    transitions: Transition {
+        // Animation when changing anchor of boat
+        AnchorAnimation { duration: worldTime }
+    }
+
+    // Default event to change state of boat from left -> right
+    Component.onCompleted: world.state = "reanchored_right"
 }
