@@ -40,6 +40,7 @@ Item {
         // Animation to make the sun rise and down
         SequentialAnimation on y {
             running: true
+            loops: Animation.Infinite
 
             // Sun rise in the morning
             NumberAnimation {
@@ -80,6 +81,7 @@ Item {
     // Animation to move the sun in horizontal
     PropertyAnimation {
         target: sun
+        loops: Animation.Infinite
         property: "x"
         from: 0
         to: world.width
@@ -90,6 +92,7 @@ Item {
     // Animation to change the sun's color
     PropertyAnimation {
         target: sun
+        loops: Animation.Infinite
         property: "color"
         from: "red"
         to: "yellow"
@@ -100,6 +103,7 @@ Item {
     // Animation to change the sun's size
     NumberAnimation {
         target: sun
+        loops: Animation.Infinite
         property: "scale"
         from: 1; to: 1.5
         duration: worldTime
@@ -109,6 +113,7 @@ Item {
     // Animation to rotate the cloud4
     PropertyAnimation {
         target: cloud4
+        loops: Animation.Infinite
         property: "rotation"
         from: 0
         to: 360
@@ -119,6 +124,7 @@ Item {
     // Animation to many clouds
     ParallelAnimation {
         running: true
+        loops: Animation.Infinite
 
         // Animation to change the cloud1's size
         NumberAnimation {
@@ -140,6 +146,7 @@ Item {
     // Animation to cloud3
     ParallelAnimation {
         running: true
+        loops: Animation.Infinite
 
         // Animation to move the cloud3 in horizontal
         NumberAnimation {
@@ -163,6 +170,7 @@ Item {
     // Animation to rotate the cloud1
     RotationAnimation {
         target: cloud1
+        loops: Animation.Infinite
         duration: worldTime
         from: 360
         to: 0
