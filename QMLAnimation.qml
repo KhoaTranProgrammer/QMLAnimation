@@ -302,6 +302,10 @@ Item {
         State { // From left -> right
             name: "reanchored_right"
             AnchorChanges { target: boat; anchors.right: world.right }
+        },
+        State { // From right -> left
+            name: "reanchored_left"
+            AnchorChanges { target: boat; anchors.left: world.left }
         }
     ]
 
@@ -313,4 +317,15 @@ Item {
 
     // Default event to change state of boat from left -> right
     Component.onCompleted: world.state = "reanchored_right"
+
+    // Timer to update the state of boat in repeatedly
+    Timer {
+        interval: worldTime
+        running: true
+        repeat: true
+        onTriggered: {
+            if(boat.x == 0) world.state = "reanchored_right" // left -> right
+            else world.state = "reanchored_left" // right -> left
+        }
+    }
 }
