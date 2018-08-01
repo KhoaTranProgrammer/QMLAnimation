@@ -164,6 +164,23 @@ Item {
     }
     Cloud {
         id: cloud2; mWorldTime: worldTime; x: 200; y: 300; width: 240; height: 100; z: -1
+
+        // State for updating parent of cloud2
+        states: State {
+            name: "reparented"
+            ParentChange { target: cloud2; parent: mountain; x: mountain.width / 3; }
+        }
+
+        // The transition when the state of cloud2 changes
+        transitions: Transition {
+            // Animation when changing parent of cloud2
+            ParentAnimation {
+                NumberAnimation { properties: "x"; duration: worldTime * 0.5 }
+            }
+        }
+
+        // Changes the state of cloud2
+        MouseArea { anchors.fill: parent; onClicked: cloud2.state = "reparented" }
     }
     Cloud {
         id: cloud3; mWorldTime: worldTime; x: 400; y: 180; width: 200; height: 140; z: 1
