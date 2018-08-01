@@ -87,6 +87,7 @@ Item {
         to: world.width
         duration: worldTime
         running: true
+        easing.type: Easing.InOutQuad
     }
 
     // Animation to change the sun's color
@@ -119,6 +120,7 @@ Item {
         to: 360
         duration: worldTime
         running: true
+        easing.type: Easing.OutInCubic
     }
 
     // Animation to many clouds
@@ -132,6 +134,7 @@ Item {
             property: "scale"
             from: 1; to: 2
             duration: worldTime
+            easing.type: Easing.InOutQuart
         }
 
         // Animation to change the cloud5's size
@@ -140,6 +143,7 @@ Item {
             property: "scale"
             from: 1; to: 0.2
             duration: worldTime
+            easing.type: Easing.InOutQuart
         }
     }
 
