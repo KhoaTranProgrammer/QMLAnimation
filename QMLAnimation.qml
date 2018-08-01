@@ -1,4 +1,5 @@
 import QtQuick 2.3
+import QtGraphicalEffects 1.0
 
 Item {
     id: world
@@ -11,8 +12,28 @@ Item {
     Rectangle {
         id: sky
         anchors.fill: parent
-        color: "light blue"
+        color: "indigo"
         z: -1
+
+        // Animation on sky's color
+        SequentialAnimation on color {
+            loops: Animation.Infinite
+
+            // Morning
+            ColorAnimation {
+                to: "light blue"
+                duration: worldTime * 0.3
+            }
+
+            // Afternoon
+            PauseAnimation { duration: worldTime * 0.4 }
+
+            // Night
+            ColorAnimation {
+                to: "indigo"
+                duration: worldTime * 0.3
+            }
+        }
     }
 
     // This is the mountain
@@ -27,6 +48,61 @@ Item {
         height: parent.height * 0.8
     }
 
+    // This is the sea
+    Rectangle {
+        id: sea
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        height: world.height * 0.05
+
+        // Sea is a group of Gradient and ColorAnimation
+        LinearGradient {
+            anchors.fill: parent
+            start: Qt.point(0, 0)
+            end: Qt.point(world.width, 0)
+            gradient: Gradient {
+                GradientStop {
+                    position: 0.0;
+                    SequentialAnimation on color {
+                        loops: Animation.Infinite
+                        ColorAnimation { from: "#E1F5FE"; to: "#B3E5FC"; duration: 1000 }
+                    }
+                }
+                GradientStop {
+                    position: 0.25;
+                    SequentialAnimation on color {
+                        loops: Animation.Infinite
+                        ColorAnimation { from: "#B3E5FC"; to: "#81D4FA"; duration: 1000 }
+                    }
+                }
+                GradientStop {
+                    position: 0.5;
+                    SequentialAnimation on color {
+                        loops: Animation.Infinite
+                        ColorAnimation { from: "#81D4FA"; to: "#4FC3F7"; duration: 1000 }
+                    }
+                }
+                GradientStop {
+                    position: 0.75;
+                    SequentialAnimation on color {
+                        loops: Animation.Infinite
+                        ColorAnimation { from: "#4FC3F7"; to: "#29B6F6"; duration: 1000 }
+                    }
+                }
+                GradientStop {
+                    position: 1.0;
+                    SequentialAnimation on color {
+                        loops: Animation.Infinite
+                        ColorAnimation { from: "#29B6F6"; to: "#03A9F4"; duration: 1000 }
+                    }
+                }
+            }
+        }
+    }
+
     // This is the sun
     Rectangle {
         id: sun
@@ -35,7 +111,7 @@ Item {
         x: 0
         y: world.height * 0.3
         radius: width / 2
-        color: "yellow"
+        color: "red"
 
         // Animation to make the sun rise and down
         SequentialAnimation on y {
@@ -56,6 +132,27 @@ Item {
             NumberAnimation {
                 from: world.height * 0.3
                 to: world.height
+                duration: worldTime * 0.3
+            }
+        }
+
+        // Animation to change the sun's color
+        SequentialAnimation on color {
+            running: true
+            loops: Animation.Infinite
+
+            // Morning
+            ColorAnimation {
+                to: "yellow"
+                duration: worldTime * 0.3
+            }
+
+            // Afternoon
+            PauseAnimation { duration: worldTime * 0.4 }
+
+            // Night
+            ColorAnimation {
+                to: "red"
                 duration: worldTime * 0.3
             }
         }
@@ -88,17 +185,6 @@ Item {
         duration: worldTime
         running: true
         easing.type: Easing.InOutQuad
-    }
-
-    // Animation to change the sun's color
-    PropertyAnimation {
-        target: sun
-        loops: Animation.Infinite
-        property: "color"
-        from: "red"
-        to: "yellow"
-        duration: worldTime
-        running: true
     }
 
     // Animation to change the sun's size

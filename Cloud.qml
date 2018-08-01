@@ -10,7 +10,7 @@ Item {
         width: parent.width * 0.6
         height: width
         radius: height / 2
-        color: "white"
+        color: "teal"
     }
 
     Rectangle {
@@ -19,7 +19,7 @@ Item {
         width: parent.width * 0.4
         height: width
         radius: height / 2
-        color: "white"
+        color: "teal"
     }
 
     Rectangle {
@@ -28,6 +28,31 @@ Item {
         width: parent.width * 0.5
         height: width
         radius: height / 2
-        color: "white"
+        color: "teal"
+    }
+
+    // Animation to change the cloud's color
+    SequentialAnimation {
+        running: true
+        loops: Animation.Infinite
+
+        // Morning
+        ColorAnimation {
+            targets: [item1, item2, item3]
+            property: "color"
+            to: "white"
+            duration: mWorldTime * 0.3
+        }
+
+        // Afternoon
+        PauseAnimation { duration: mWorldTime * 0.4 }
+
+        // Night
+        ColorAnimation {
+            targets: [item1, item2, item3]
+            property: "color"
+            to: "teal"
+            duration: mWorldTime * 0.3
+        }
     }
 }
