@@ -116,23 +116,48 @@ Item {
         running: true
     }
 
-    // Animation to change the cloud1's size
-    NumberAnimation {
-        target: cloud1
-        property: "scale"
-        from: 1; to: 2
-        duration: worldTime
+    // Animation to many clouds
+    ParallelAnimation {
         running: true
+
+        // Animation to change the cloud1's size
+        NumberAnimation {
+            target: cloud1
+            property: "scale"
+            from: 1; to: 2
+            duration: worldTime
+        }
+
+        // Animation to change the cloud5's size
+        NumberAnimation {
+            target: cloud5
+            property: "scale"
+            from: 1; to: 0.2
+            duration: worldTime
+        }
     }
 
-    // Animation to move the cloud3 in horizontal
-    NumberAnimation {
-        target: cloud3
-        property: "x"
-        from: cloud3.x
-        to: world.width
-        duration: worldTime
+    // Animation to cloud3
+    ParallelAnimation {
         running: true
+
+        // Animation to move the cloud3 in horizontal
+        NumberAnimation {
+            target: cloud3
+            property: "x"
+            from: cloud3.x
+            to: world.width
+            duration: worldTime
+        }
+
+        // Animation to move the cloud3 in vertical
+        NumberAnimation {
+            target: cloud3
+            property: "y"
+            from: cloud3.y
+            to: 0
+            duration: worldTime
+        }
     }
 
     // Animation to rotate the cloud1
