@@ -203,6 +203,23 @@ Item {
         x: 0
         height: world.height * 0.2
         fillMode: Image.PreserveAspectFit
+
+        // Timer to update the rotation of boat for up&down in repeatedly
+        Timer {
+            interval: worldTime / 10;
+            running: true;
+            repeat: true
+            onTriggered: {
+                if(boat.rotation == 15) boat.rotation = -15
+                else boat.rotation = 15
+            }
+        }
+
+        // Add Behavior when rotation change
+        Behavior on rotation {
+            // Animation to smoothly change the rotation
+            SmoothedAnimation { velocity: 30 }
+        }
     }
 
     // Animation to move the sun in horizontal
