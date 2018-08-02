@@ -222,6 +222,40 @@ Item {
         }
     }
 
+    // This is the moon
+    Image {
+        id: moon
+        source: "moon.png"
+        x: world.width
+        y: 0
+        height: world.height * 0.15
+        fillMode: Image.PreserveAspectFit
+
+        // Timer to appear/disappear the moon
+        Timer {
+            interval: worldTime * 0.5
+            running: true
+            repeat: true
+            onTriggered: {
+                if(moon.y <= moon.height){ // Moon will appear in the night
+                    moon.x = world.width * 0.7
+                    moon.y = world.height * 0.2
+                }else{ // Moon will disappear in the day
+                    moon.x = world.width
+                    moon.y = 0
+                }
+            }
+        }
+
+        // Add Behavior when the moon location change
+        Behavior on x {
+
+        }
+        Behavior on y {
+
+        }
+    }
+
     // Animation to move the sun in horizontal
     PropertyAnimation {
         target: sun
