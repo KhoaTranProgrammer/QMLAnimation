@@ -25,4 +25,28 @@ Item {
             }
         }
     }
+
+    // SequentialAnimation to destroy the star
+    SequentialAnimation {
+        id: stopStar
+        running: false
+
+        // Apply NumberAnimation on opacity to disappear the star
+        NumberAnimation {
+            target: star
+            property: "opacity"
+            from: 1; to: 0
+            duration: 250
+        }
+
+        // Apply ScriptAction to execute script during Animation
+        ScriptAction {
+            script: root.destroy()
+        }
+    }
+
+    // The function to start the Animation to destroy the star
+    function remove() {
+        stopStar.start()
+    }
 }

@@ -8,6 +8,12 @@ Item {
 
     property int worldTime: 10000 // 10 seconds
 
+    // Create the array to store the new stars
+    QtObject {
+        id: data
+        property var stars: []
+    }
+
     // This is the sky
     Rectangle {
         id: sky
@@ -242,19 +248,30 @@ Item {
                     moon.y = world.height * 0.2
 
                     // Dynamically create Star objects when the Moon appears
-                    var newX = Math.floor(Math.random() * world.width)
-                    var newY = Math.floor(Math.random() * world.height * 0.9)
-                    starCreator.createObject(world,
-                    {
-                        x: newX,
-                        y: newY,
-                        width: 10,
-                        height: 10
-                    })
+                    for(var i = 0; i < 200; i++){
+                        var newX = Math.floor(Math.random() * world.width)
+                        var newY = Math.floor(Math.random() * world.height * 0.9)
+                        data.stars.push
+                                (
+                                    starCreator.createObject(world,
+                                    {
+                                        x: newX,
+                                        y: newY,
+                                        width: 10,
+                                        height: 10
+                                    }
+                                ))
+                    }
 
                 }else{ // Moon will disappear in the day
                     moon.x = world.width
                     moon.y = 0
+
+                    // Destroy all stars
+                    for(var i = 0; i < 200; i++){
+                        var result = data.stars.pop()
+                        result.remove()
+                    }
                 }
             }
         }
