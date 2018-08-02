@@ -293,6 +293,22 @@ Item {
         Star {}
     }
 
+    // A pair of birds
+    Bird {
+        id: bird
+        x: world.width - 100
+        y: world.height / 2
+        width: world.width * 0.1
+        height: bird.width * 0.5
+    }
+    Bird {
+        id: bird2
+        x: world.width - 120
+        y: world.height / 2
+        width: world.width * 0.1
+        height: bird2.width * 0.5
+    }
+
     // Animation to move the sun in horizontal
     PropertyAnimation {
         target: sun
