@@ -240,6 +240,18 @@ Item {
                 if(moon.y <= moon.height){ // Moon will appear in the night
                     moon.x = world.width * 0.7
                     moon.y = world.height * 0.2
+
+                    // Dynamically create Star objects when the Moon appears
+                    var newX = Math.floor(Math.random() * world.width)
+                    var newY = Math.floor(Math.random() * world.height * 0.9)
+                    starCreator.createObject(world,
+                    {
+                        x: newX,
+                        y: newY,
+                        width: 10,
+                        height: 10
+                    })
+
                 }else{ // Moon will disappear in the day
                     moon.x = world.width
                     moon.y = 0
@@ -256,6 +268,12 @@ Item {
             // Apply SpringAnimation when y change
             SpringAnimation { spring: 2; damping: 1.0 }
         }
+    }
+
+    // Dynamically create Star object by using Component QML type
+    Component {
+        id: starCreator
+        Star {}
     }
 
     // Animation to move the sun in horizontal
