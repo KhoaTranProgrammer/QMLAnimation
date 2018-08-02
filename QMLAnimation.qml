@@ -249,10 +249,12 @@ Item {
 
         // Add Behavior when the moon location change
         Behavior on x {
-
+            // Apply SpringAnimation when x change
+            SpringAnimation { spring: 2; damping: 1.0 }
         }
         Behavior on y {
-
+            // Apply SpringAnimation when y change
+            SpringAnimation { spring: 2; damping: 1.0 }
         }
     }
 
