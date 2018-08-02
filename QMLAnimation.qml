@@ -432,4 +432,40 @@ Item {
             else world.state = "reanchored_left" // right -> left
         }
     }
+
+    // ParallelAnimation to process for flying of 2 birds
+    ParallelAnimation {
+        running: true
+        loops: Animation.Infinite
+
+        // Apply PathAnimation to decide the flying direction for first Bird
+        PathAnimation {
+            id: pathAnim
+            duration: worldTime
+            target: bird
+            path: Path {
+                startX: world.width; startY: world.height * 0.5
+                PathCurve { x: world.width * 0.7; y: world.height * 0.4 }
+                PathCurve { x: world.width * 0.5; y: world.height * 0.3 }
+                PathCurve { x: world.width * 0.3; y: world.height * 0.5 }
+                PathCurve { x: world.width * 0.1; y: world.height * 0.2 }
+                PathCurve { x: world.width * 0.0; y: world.height * 0.4 }
+            }
+        }
+
+        // Apply PathAnimation to decide the flying direction for second Bird
+        PathAnimation {
+            id: pathAnim2
+            duration: worldTime
+            target: bird2
+            path: Path {
+                startX: world.width * 0.9; startY: world.height * 0.55
+                PathCurve { x: world.width * 0.75; y: world.height * 0.45 }
+                PathCurve { x: world.width * 0.55; y: world.height * 0.35 }
+                PathCurve { x: world.width * 0.35; y: world.height * 0.55 }
+                PathCurve { x: world.width * 0.15; y: world.height * 0.25 }
+                PathCurve { x: world.width * 0.00; y: world.height * 0.45 }
+            }
+        }
+    }
 }
